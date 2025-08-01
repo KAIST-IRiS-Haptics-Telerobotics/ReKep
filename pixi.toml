@@ -1,0 +1,60 @@
+[workspace]
+channels = ["conda-forge"]
+name = "ReKep"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+setup-with-download = "python -m omnigibson.download_datasets"
+setup-with-copy = "mv data ./.pixi/envs/default/lib/python3.10/site-packages/omnigibson/data"
+
+[dependencies]
+open3d = "*"
+python = ">=3.10,<3.11"
+omegaconf = "*"
+hydra-core = "*"
+
+# Rekep dependencies
+click = "==8.1.3"
+nest-asyncio = "==1.5.8"
+numpy = "==1.23.5"
+requests = ">=2.25.1,<2.26.0"
+pillow = ">=11.0.0,<11.1.dev0"
+numba = ">=0.60.0,<0.61"
+
+
+[pypi-dependencies]
+omnigibson = "==1.1.0"
+pars = "*"
+openai = "*"
+torch = "*"
+kmeans-pytorch = "*"
+omniverse_kit = "==106.0.1.126909"
+isaacsim_kernel = "==4.1.0.0"
+isaacsim_app = "==4.1.0.0"
+isaacsim_core = "==4.1.0.0"
+isaacsim_gui = "==4.1.0.0"
+isaacsim_utils = "==4.1.0.0"
+isaacsim_storage = "==4.1.0.0"
+isaacsim_asset = "==4.1.0.0"
+isaacsim_sensor = "==4.1.0.0"
+isaacsim_robot_motion = "==4.1.0.0"
+isaacsim_robot = "==4.1.0.0"
+isaacsim_benchmark = "==4.1.0.0"
+isaacsim_code_editor = "==4.1.0.0"
+isaacsim_ros1 = "==4.1.0.0"
+isaacsim_cortex = "==4.1.0.0"
+isaacsim_example = "==4.1.0.0"
+isaacsim_replicator = "==4.1.0.0"
+isaacsim_rl = "==4.1.0.0"
+isaacsim_robot_setup = "==4.1.0.0"
+isaacsim_ros2 = "==4.1.0.0"
+isaacsim_template = "==4.1.0.0"
+isaacsim_test = "==4.1.0.0"
+isaacsim = "==4.1.0.0"
+isaacsim_extscache_physics = "==4.1.0.0"
+isaacsim_extscache_kit = "==4.1.0.0"
+isaacsim_extscache_kit_sdk = "==4.1.0.0"
+scikit-learn = ">=1.7.1, <2"
+parse = ">=1.20.2, <2"
+cffi = "==1.16.0"

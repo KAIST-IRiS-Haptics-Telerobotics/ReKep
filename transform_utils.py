@@ -8,6 +8,7 @@ import math
 from numba import njit
 import numpy as np
 from scipy.spatial.transform import Rotation as R
+import torch
 
 PI = np.pi
 EPS = np.finfo(float).eps * 4.0
@@ -45,6 +46,11 @@ _AXES2TUPLE = {
 
 _TUPLE2AXES = dict((v, k) for k, v in _AXES2TUPLE.items())
 
+convertion_map = {
+    torch.float32: np.float32,
+    torch.float64: np.float64,
+    torch.float16: np.float16,
+}
 
 def ewma_vectorized(data, alpha, offset=None, dtype=None, order="C", out=None):
     """
@@ -149,6 +155,10 @@ def quat_multiply(quaternion1, quaternion0):
     """
     x0, y0, z0, w0 = quaternion0
     x1, y1, z1, w1 = quaternion1
+    np_dtype = quaternion0.dtype
+    if not isinstance(quaternion0, np.ndarray):
+        np_dtype = convertion_map.get(np_dtype, np.float32)
+     
     return np.array(
         (
             x1 * w0 + y1 * z0 - z1 * y0 + w1 * x0,
@@ -156,7 +166,7 @@ def quat_multiply(quaternion1, quaternion0):
             x1 * y0 - y1 * x0 + z1 * w0 + w1 * z0,
             -x1 * x0 - y1 * y0 - z1 * z0 + w1 * w0,
         ),
-        dtype=quaternion0.dtype,
+        dtype=np_dtype,
     )
 
 
@@ -455,9 +465,10 @@ def pose2mat(pose):
     Returns:
         np.array: 4x4 homogeneous matrix
     """
-    homo_pose_mat = np.zeros((4, 4), dtype=pose[0].dtype)
+    np_dtype = convertion_map.get(pose[0].dtype, np.float32)
+    homo_pose_mat = np.zeros((4, 4), dtype=np_dtype)
     homo_pose_mat[:3, :3] = quat2mat(pose[1])
-    homo_pose_mat[:3, 3] = np.array(pose[0], dtype=pose[0].dtype)
+    homo_pose_mat[:3, 3] = np.array(pose[0], dtype=np_dtype)
     homo_pose_mat[3, 3] = 1.0
     return homo_pose_mat
 

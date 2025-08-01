@@ -28,7 +28,7 @@ class OGCamera:
         ret = {}
         ret["rgb"] = obs[0]["rgb"][:,:,:3]  # H, W, 3
         ret["depth"] = obs[0]["depth_linear"]  # H, W
-        ret["points"] = pixel_to_3d_points(ret["depth"], self.intrinsics, self.extrinsics)  # H, W, 3
+        ret["points"] = pixel_to_3d_points(ret["depth"].numpy(), self.intrinsics, self.extrinsics)  # H, W, 3
         ret["seg"] = obs[0]["seg_semantic"]  # H, W
         ret["intrinsic"] = self.intrinsics
         ret["extrinsic"] = self.extrinsics

@@ -48,8 +48,9 @@ class Main:
             world2robot_homo=self.env.world2robot_homo,
         )
         # initialize solvers
-        self.subgoal_solver = SubgoalSolver(global_config['subgoal_solver'], ik_solver, self.env.reset_joint_pos)
-        self.path_solver = PathSolver(global_config['path_solver'], ik_solver, self.env.reset_joint_pos)
+        reset_jnt_pos_np = self.env.reset_joint_pos.numpy()
+        self.subgoal_solver = SubgoalSolver(global_config['subgoal_solver'], ik_solver, reset_jnt_pos_np)
+        self.path_solver = PathSolver(global_config['path_solver'], ik_solver, reset_jnt_pos_np)
         # initialize visualizer
         if self.visualize:
             self.visualizer = Visualizer(global_config['visualizer'], self.env)

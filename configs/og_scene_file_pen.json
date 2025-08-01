@@ -894,7 +894,7 @@
                     "category": "breakfast_table",
                     "model": "dnsjnv",
                     "uuid": 88058023,
-                    "scale": 2
+                    "scale": [2.0, 2.0, 2.0]
                 }
             },
             "pen_1": {

@@ -32,6 +32,8 @@ def unnormalize_vars(normalized_vars, og_bounds):
     return vars
 
 def calculate_collision_cost(poses, sdf_func, collision_points, threshold):
+    poses = poses.astype(np.float64)
+    collision_points = collision_points.astype(np.float64)
     assert poses.shape[1:] == (4, 4)
     transformed_pcs = batch_transform_points(collision_points, poses)
     transformed_pcs_flatten = transformed_pcs.reshape(-1, 3)  # [num_poses * num_points, 3]
