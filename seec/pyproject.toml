@@ -1,0 +1,15 @@
+[project]
+name = "seec"
+version = "0.1.0"
+description = "Task and motion planning based on VLM ChatGPT"
+requires-python = ">=3.10,<3.11"
+
+dependencies = [
+    "langchain>=0.3.27,<0.4",
+    "langgraph>=0.6.3,<0.7",
+    "langchain-openai>=0.3.28,<0.4",
+]
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"

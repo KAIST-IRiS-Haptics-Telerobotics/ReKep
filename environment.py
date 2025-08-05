@@ -424,7 +424,7 @@ class ReKepOGEnv:
             save_path = os.path.join(save_dir, f'{datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.mp4')
         video_writer = imageio.get_writer(save_path, fps=30)
         for rgb in self.video_cache:
-            video_writer.append_data(rgb)
+            video_writer.append_data(rgb.cpu().numpy())
         video_writer.close()
         return save_path
 

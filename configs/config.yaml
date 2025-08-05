@@ -104,6 +104,21 @@ constraint_generator:
   model: chatgpt-4o-latest
   temperature: 0.0
   max_tokens: 2048
+  high_level_actor: o4-mini
+  high_level_critic: o4-mini
+  low_level_actor: o4-mini
+  cypher_query: o4-mini
+  low_level_critic: o4-mini
+  codegen_actor: o4-mini
+  codegen_critic: o4-mini
+  # high_level_actor: 4o
+  # high_level_critic: 4o
+  # low_level_actor: 4o
+  # cypher_query: 4o
+  # low_level_critic: 4o
+  # codegen_actor: 4o
+  # codegen_critic: 4o
+  thread_id: 1
 
 visualizer:
   bounds_min: *bounds_min
