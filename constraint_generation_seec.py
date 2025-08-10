@@ -47,7 +47,7 @@ class ConstraintGeneratorSeec:
                 "content": [
                     {
                         "type": "text",
-                        "text": "Put the pen in the cup",
+                        "text": instruction,
                     },
                     {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{img_base64}"}},
                 ],

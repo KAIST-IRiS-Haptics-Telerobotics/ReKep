@@ -20,6 +20,7 @@ class KeypointProposer:
         torch.cuda.manual_seed(self.config['seed'])
 
     def get_keypoints(self, rgb, points, masks):
+        print(rgb.shape, points.shape, masks.shape)
         # preprocessing
         transformed_rgb, rgb, points, masks, shape_info = self._preprocess(rgb, points, masks)
         # get features
